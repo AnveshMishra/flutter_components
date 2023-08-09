@@ -1,5 +1,5 @@
+import 'package:api_client/sizer/sizer/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/sizer/sizer/size_config.dart';
 
 import 'app_colors.dart';
 

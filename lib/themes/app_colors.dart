@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/hexcolor/hexcolor.dart';
+
+import '../hexcolor/hexcolor.dart';
 
 final Color adaniLightPrimaryColor = HexColor('#0D67CA');
 final Color adaniLightDividerColor = HexColor('#E2E2E2');
