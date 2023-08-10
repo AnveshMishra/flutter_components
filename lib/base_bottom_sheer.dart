@@ -1,5 +1,5 @@
+import 'package:api_client/sizer/sizer/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/sizer/sizer/size_config.dart';
 
 Future<void> showAppBottomSheet({
   required BuildContext context,
@@ -20,7 +20,7 @@ Future<void> showAppBottomSheet({
       isScrollControlled: true,
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: 0,
             // MediaQuery.of(context).viewInsets.bottom,
           ),

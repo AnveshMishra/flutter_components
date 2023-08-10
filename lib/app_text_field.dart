@@ -139,6 +139,9 @@ class _AppTextFieldState extends State<AppTextField> {
             onChanged: (text) {
               widget.onTextChanged?.call(text);
             },
+            onTapOutside: (_) => (primaryFocus?.hasFocus ?? false)
+                ? primaryFocus?.unfocus()
+                : null,
             decoration: InputDecoration(
               counterText: "",
               hintStyle: theme.textTheme.titleMedium,

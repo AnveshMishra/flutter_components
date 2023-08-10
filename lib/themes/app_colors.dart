@@ -1,7 +1,8 @@
+import 'package:api_client/sizer/sizer/size_config.dart';
+import 'package:api_client/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/hexcolor/hexcolor.dart';
-import 'package:flutter_application_5/sizer/sizer/size_config.dart';
-import 'package:flutter_application_5/themes/theme_provider.dart';
+
+import '../hexcolor/hexcolor.dart';
 
 part 'colors_getter.dart';
 

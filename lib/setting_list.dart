@@ -1,7 +1,7 @@
+import 'package:api_client/padding_ext.dart';
+import 'package:api_client/sizer/sizer/size_config.dart';
+import 'package:api_client/theme_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/extention/padding_ext.dart';
-import 'package:flutter_application_5/extention/theme_ext.dart';
-import 'package:flutter_application_5/sizer/sizer/size_config.dart';
 
 class SettingList extends StatefulWidget {
   final List<String> masterList;
@@ -18,7 +18,7 @@ class SettingList extends StatefulWidget {
 }
 
 class _SettingListState extends State<SettingList> {
-  List<String> _selectedList = [];
+  final List<String> _selectedList = [];
   List<String> _searchList = [];
 
   @override
