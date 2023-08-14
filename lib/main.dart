@@ -1,11 +1,20 @@
+import 'package:api_client/router/router.dart';
 import 'package:api_client/sizer/sizer/size_config.dart';
-import 'package:api_client/themes/themes.dart';
+import 'package:api_client/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
-
-import 'home.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +22,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      SizeConfig.init(constraints, context);
-      return MaterialApp(
-          title: 'Flutter Demo', theme: adaniLightTheme, home: const Home());
-    });
+    return Consumer<ThemeProvider>(
+      builder: (_, value, __) {
+        return LayoutBuilder(builder: (context, constraints) {
+          SizeConfig.init(constraints, context);
+          final AppRoute route = AppRoute(false, false);
+          return MaterialApp.router(
+            title: 'Flutter Demo',
+            routerConfig: route.router,
+            theme: value.getThemeData(),
+          );
+        });
+      },
+    );
   }
 }

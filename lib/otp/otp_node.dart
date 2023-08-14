@@ -1,6 +1,6 @@
 import 'package:api_client/padding_ext.dart';
 import 'package:api_client/sizer/sizer/size_config.dart';
-import 'package:api_client/theme_ext.dart';
+import 'package:api_client/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OtpNode extends StatelessWidget {

@@ -96,7 +96,7 @@ Color _textColor(
     default:
       return brightness == Brightness.light
           ? adaniLightTextColor
-          : adaniLightTextColor;
+          : adaniDarkTextColor;
   }
 }
 
@@ -171,6 +171,9 @@ ThemeData getAppThemeData(
           baseTextStyle.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w400),
       bodySmall:
           baseTextStyle.copyWith(fontSize: 12.sp, fontWeight: FontWeight.w400),
+    ),
+    dividerTheme: DividerThemeData(
+      color: _dividerColor(brightness: brightness, theme: theme),
     ),
   );
 }

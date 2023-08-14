@@ -1,5 +1,6 @@
 import 'package:api_client/setting_list.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'app_text_field.dart';
 import 'base_bottom_sheer.dart';
@@ -42,6 +43,10 @@ class Home extends StatelessWidget {
             const OtpView(
               totalOtpField: 6,
             ),
+            const SizedBox(),
+            ElevatedButton(
+                onPressed: () => context.push('/page1'),
+                child: const Text('Page1')),
             Center(
               child: OrderTracker(
                 orders: [

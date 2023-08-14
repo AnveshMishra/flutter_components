@@ -80,6 +80,10 @@ class _OtpViewState extends State<OtpView> {
     for (final textController in listTextEdit) {
       buffer.write(textController.text.trim());
     }
+    if (buffer.toString().trim().length == widget.totalOtpField &&
+        (primaryFocus?.hasFocus ?? false)) {
+      primaryFocus?.unfocus();
+    }
   }
 
   void onTapHandler({required int selectedIndex}) {

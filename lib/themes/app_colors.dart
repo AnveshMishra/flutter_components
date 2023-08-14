@@ -1,10 +1,12 @@
 import 'package:api_client/sizer/sizer/size_config.dart';
 import 'package:api_client/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../hexcolor/hexcolor.dart';
 
 part 'colors_getter.dart';
+part 'app_theme_extenstion.dart';
 
 // Adani Theme colors
 final Color adaniLightPrimaryColor = HexColor('#0D67CA');

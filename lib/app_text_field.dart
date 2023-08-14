@@ -1,4 +1,5 @@
 import 'package:api_client/sizer/sizer/size_config.dart';
+import 'package:api_client/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -52,10 +53,7 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField> {
   late bool _passwordVisibility;
   late ThemeData theme;
-
   late final FocusNode _focusNode;
-
-  // late Color _borderColor;
   final double _borderSize = 0.5.sp;
   late String? _errorText;
   final ValueNotifier<Color> _borderColorNotifier =
@@ -84,7 +82,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   void didChangeDependencies() {
-    theme = Theme.of(context);
+    theme = context.theme;
     if ((_errorText ?? '').isEmpty) {
       _borderColorNotifier.value = theme.dividerColor;
     } else {
@@ -144,7 +142,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 : null,
             decoration: InputDecoration(
               counterText: "",
-              hintStyle: theme.textTheme.titleMedium,
+              hintStyle: theme.textTheme.bodyMedium,
               errorText: _errorText,
               labelText: widget.label,
               helperText: widget.helperText,
