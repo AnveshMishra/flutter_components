@@ -60,7 +60,7 @@ class _SettingListState extends State<SettingList> {
               vertical: 8.sp,
             ),
           ),
-        ).paddingBySide(left: 8.sp, right: 8.sp, bottom: 10.sp),
+        ).paddingOnOnlySides(left: 8.sp, right: 8.sp, bottom: 10.sp),
         Flexible(
           child: ListView.builder(
             itemCount: _searchList.length,

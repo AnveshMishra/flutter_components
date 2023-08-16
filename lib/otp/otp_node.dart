@@ -54,7 +54,7 @@ class OtpNode extends StatelessWidget {
             ),
           ),
         ),
-      ).paddingBySide(
+      ).paddingOnOnlySides(
         right: 8.sp,
         left: 8.sp,
       ),

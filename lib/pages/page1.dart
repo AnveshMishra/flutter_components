@@ -1,8 +1,12 @@
 import 'package:api_client/app_text_field.dart';
+import 'package:api_client/hexcolor/hexcolor.dart';
 import 'package:api_client/padding_ext.dart';
 import 'package:api_client/sizer/sizer/size_config.dart';
+import 'package:api_client/table/table_widgets.dart';
+import 'package:api_client/themes/app_colors.dart';
 import 'package:api_client/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class Page1 extends StatefulWidget {
@@ -39,10 +43,46 @@ class _Page1State extends State<Page1> {
             AppTextField(
               label: 'Hello, world',
               controller: _controller,
-            ).paddingAllSide(8.sp),
+            ).paddingFromAllSide(8.sp),
             ElevatedButton(
               onPressed: () => context.read<ThemeProvider>().toggleBrightness(),
               child: const Text('toggleBrightness'),
+            ),
+            ElevatedButton(
+              onPressed: () => context.push('/chart'),
+              child: const Text('go to charts'),
+            ),
+            Container(
+              margin: EdgeInsets.all(4.sp),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: context.borderColor,
+                  ),
+                  borderRadius: BorderRadius.circular(8.sp)),
+              child: RecentOrderTableWidget(
+                elements: [
+                  RecentOrderTableElements(
+                    onTap: () {},
+                    poNo: 'SP3587N',
+                    productName: 'PPC Yellow...+3 More',
+                  ),
+                  RecentOrderTableElements(
+                    onTap: () {},
+                    poNo: 'SP3587N',
+                    productName: 'PPC Yellow...+3 More',
+                  ),
+                  RecentOrderTableElements(
+                    onTap: () {},
+                    poNo: 'SP3587N',
+                    productName: 'PPC Yellow...+3 More',
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: HexColor('#E2E2E2'),
+              height: 200,
+              width: 200,
             ),
           ],
         ),

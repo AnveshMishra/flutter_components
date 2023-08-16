@@ -35,8 +35,8 @@ Color _borderColor(
     case AppTheme.adani:
     default:
       return brightness == Brightness.light
-          ? adaniLightPrimaryColor
-          : adaniDarkPrimaryColor;
+          ? adaniLightBorderColor
+          : adaniDarkBorderColor;
   }
 }
 
@@ -55,8 +55,8 @@ Color _dividerColor(
     case AppTheme.adani:
     default:
       return brightness == Brightness.light
-          ? adaniLightPrimaryColor
-          : adaniDarkPrimaryColor;
+          ? adaniLightDividerColor
+          : adaniDarkDividerColor;
   }
 }
 
@@ -135,6 +135,8 @@ ThemeData getAppThemeData(
   );
   return ThemeData(
     useMaterial3: false,
+    scaffoldBackgroundColor:
+        _backgroundColor(brightness: brightness, theme: theme),
     dividerColor: adaniLightDividerColor,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

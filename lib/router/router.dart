@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../charts/charts_demo.dart';
+import '../charts/new_chart.dart';
 import '../home.dart';
 import '../pages/page1.dart';
 
@@ -38,6 +40,16 @@ class AppRoute {
             );
           },
           builder: (context, GoRouterState state) => const Page1(),
+        ),
+        GoRoute(
+          name: '/chart',
+          path: '/chart',
+          pageBuilder: (context, state) {
+            return MaterialPage(
+              child: GraphScreen(),
+            );
+          },
+          builder: (context, GoRouterState state) => GraphScreen(),
         ),
       ],
       errorPageBuilder: (context, state) {
