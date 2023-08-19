@@ -1,4 +1,6 @@
 import 'package:api_client/app_text_field.dart';
+import 'package:api_client/date_picker/date_picker.dart';
+import 'package:api_client/draggable_bottom_sheet.dart';
 import 'package:api_client/hexcolor/hexcolor.dart';
 import 'package:api_client/padding_ext.dart';
 import 'package:api_client/sizer/sizer/size_config.dart';
@@ -62,7 +64,13 @@ class _Page1State extends State<Page1> {
               child: RecentOrderTableWidget(
                 elements: [
                   RecentOrderTableElements(
-                    onTap: () {},
+                    onTap: () {
+                      showDraggableBottomSheet(
+                        title: 'Date',
+                        context: context,
+                        builder: (_, con) => const DatePicker(),
+                      );
+                    },
                     poNo: 'SP3587N',
                     productName: 'PPC Yellow...+3 More',
                   ),

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../charts/charts_demo.dart';
 import '../charts/new_chart.dart';
+import '../date_picker/date_picker.dart';
 import '../home.dart';
 import '../pages/page1.dart';
 
@@ -45,11 +46,11 @@ class AppRoute {
           name: '/chart',
           path: '/chart',
           pageBuilder: (context, state) {
-            return MaterialPage(
-              child: GraphScreen(),
+            return const MaterialPage(
+              child: DatePicker(),
             );
           },
-          builder: (context, GoRouterState state) => GraphScreen(),
+          builder: (context, GoRouterState state) => const DatePicker(),
         ),
       ],
       errorPageBuilder: (context, state) {

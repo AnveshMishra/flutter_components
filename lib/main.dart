@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
           SizeConfig.init(constraints, context);
           final AppRoute route = AppRoute(false, false);
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             routerConfig: route.router,
             theme: value.getThemeData(),
