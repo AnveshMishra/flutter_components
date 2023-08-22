@@ -23,6 +23,7 @@ class AppTextField extends StatefulWidget {
   final int? maxLine;
   final bool? readOnly;
   final Color? bgColor;
+  final Widget? suffixIcon;
 
   // ignore: constant_identifier_names
   static const int MAX_LENGTH = 500;
@@ -48,6 +49,7 @@ class AppTextField extends StatefulWidget {
     this.maxLine = 1,
     this.readOnly,
     this.bgColor,
+    this.suffixIcon,
   });
 
   @override
@@ -146,32 +148,35 @@ class _AppTextFieldState extends State<AppTextField> {
                 ? primaryFocus?.unfocus()
                 : null,
             decoration: InputDecoration(
+              hintText: widget.hint,
               counterText: "",
               hintStyle: theme.textTheme.bodyMedium,
               errorText: _errorText,
               labelText: widget.label,
               helperText: widget.helperText,
               labelStyle: theme.textTheme.bodyMedium,
-              suffixIcon: ValueListenableBuilder(
-                valueListenable: widget.controller ?? TextEditingController(),
-                builder: (_, value, __) {
-                  if (value.text.isNotEmpty) {
-                    return InkWell(
-                      onTap: () {
-                        widget.controller?.clear();
-                        _errorText = null;
-                        setState(() {});
-                      },
-                      child: Icon(
-                        Icons.close,
-                        color: theme.colorScheme.secondary,
-                        size: 20.sp,
-                      ),
-                    );
-                  }
-                  return const SizedBox();
-                },
-              ),
+              suffixIcon: widget.suffixIcon ??
+                  ValueListenableBuilder(
+                    valueListenable:
+                        widget.controller ?? TextEditingController(),
+                    builder: (_, value, __) {
+                      if (value.text.isNotEmpty) {
+                        return InkWell(
+                          onTap: () {
+                            widget.controller?.clear();
+                            _errorText = null;
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: theme.colorScheme.secondary,
+                            size: 20.sp,
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
               prefixIcon: widget.prefix,
               contentPadding: EdgeInsets.zero,
               border: InputBorder.none,
