@@ -10,6 +10,9 @@ Future<void> showDraggableBottomSheet({
       builder,
   bool hideClose = false,
   String? title,
+  double? initialChildSize,
+  double? minChildSize,
+  double? maxChildSize,
 }) {
   return showModalBottomSheet(
       context: context,
@@ -24,10 +27,10 @@ Future<void> showDraggableBottomSheet({
             onTap:
                 () {}, // this is added so bottom sheet does not close when tap on non transparent part
             child: DraggableScrollableSheet(
-              initialChildSize: 0.95,
+              initialChildSize: initialChildSize ?? 0.5,
               expand: false,
-              minChildSize: 0.95,
-              maxChildSize: 0.95,
+              minChildSize: minChildSize ?? 0.5,
+              maxChildSize: maxChildSize ?? 0.95,
               builder: (context, scrollController) {
                 return SafeArea(
                   bottom: false,

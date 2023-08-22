@@ -21,6 +21,8 @@ class AppTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? errorText;
   final int? maxLine;
+  final bool? readOnly;
+  final Color? bgColor;
 
   // ignore: constant_identifier_names
   static const int MAX_LENGTH = 500;
@@ -44,6 +46,8 @@ class AppTextField extends StatefulWidget {
     this.focusNode,
     this.errorText,
     this.maxLine = 1,
+    this.readOnly,
+    this.bgColor,
   });
 
   @override
@@ -100,14 +104,15 @@ class _AppTextFieldState extends State<AppTextField> {
           builder: (_, value, __) => Container(
             height: 50.sp,
             decoration: BoxDecoration(
-              border: Border.all(color: value, width: _borderSize),
-              borderRadius: BorderRadius.circular(8.sp),
-            ),
+                border: Border.all(color: value, width: _borderSize),
+                borderRadius: BorderRadius.circular(8.sp),
+                color: widget.bgColor),
           ),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 4.sp),
           child: TextFormField(
+            readOnly: widget.readOnly ?? false,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w500,
             ),
@@ -148,24 +153,25 @@ class _AppTextFieldState extends State<AppTextField> {
               helperText: widget.helperText,
               labelStyle: theme.textTheme.bodyMedium,
               suffixIcon: ValueListenableBuilder(
-                  valueListenable: widget.controller ?? TextEditingController(),
-                  builder: (_, value, __) {
-                    if (value.text.isNotEmpty) {
-                      return InkWell(
-                        onTap: () {
-                          widget.controller?.clear();
-                          _errorText = null;
-                          setState(() {});
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: theme.colorScheme.secondary,
-                          size: 20.sp,
-                        ),
-                      );
-                    }
-                    return const SizedBox();
-                  }),
+                valueListenable: widget.controller ?? TextEditingController(),
+                builder: (_, value, __) {
+                  if (value.text.isNotEmpty) {
+                    return InkWell(
+                      onTap: () {
+                        widget.controller?.clear();
+                        _errorText = null;
+                        setState(() {});
+                      },
+                      child: Icon(
+                        Icons.close,
+                        color: theme.colorScheme.secondary,
+                        size: 20.sp,
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
               prefixIcon: widget.prefix,
               contentPadding: EdgeInsets.zero,
               border: InputBorder.none,

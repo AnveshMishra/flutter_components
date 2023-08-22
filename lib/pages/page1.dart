@@ -75,7 +75,9 @@ class _Page1State extends State<Page1> {
                     productName: 'PPC Yellow...+3 More',
                   ),
                   RecentOrderTableElements(
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed('/order');
+                    },
                     poNo: 'SP3587N',
                     productName: 'PPC Yellow...+3 More',
                   ),

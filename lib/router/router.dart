@@ -1,3 +1,4 @@
+import 'package:api_client/orders/my_orders.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,6 +49,16 @@ class AppRoute {
           pageBuilder: (context, state) {
             return const MaterialPage(
               child: DatePicker(),
+            );
+          },
+          builder: (context, GoRouterState state) => const DatePicker(),
+        ),
+        GoRoute(
+          name: '/order',
+          path: '/order',
+          pageBuilder: (context, state) {
+            return const MaterialPage(
+              child: MyOrderScreen(),
             );
           },
           builder: (context, GoRouterState state) => const DatePicker(),
