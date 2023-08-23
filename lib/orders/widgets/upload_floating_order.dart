@@ -1,11 +1,18 @@
 import 'package:api_client/padding_ext.dart';
 import 'package:api_client/sizer/sizer/size_config.dart';
 import 'package:api_client/themes/app_colors.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-class UploadFlotingOrders extends StatelessWidget {
+class UploadFlotingOrders extends StatefulWidget {
   const UploadFlotingOrders({super.key});
 
+  @override
+  State<UploadFlotingOrders> createState() => _UploadFlotingOrdersState();
+}
+
+class _UploadFlotingOrdersState extends State<UploadFlotingOrders> {
+  ValueNotifier<FilePickerResult?> selectedFile = ValueNotifier(null);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,7 +37,13 @@ class UploadFlotingOrders extends StatelessWidget {
             children: [
               MaterialButton(
                 elevation: 0.5,
-                onPressed: () => {},
+                onPressed: () async {
+                  FilePickerResult? result =
+                      await FilePicker.platform.pickFiles();
+                  if (result != null) {
+                    selectedFile.value = result;
+                  }
+                },
                 color: context.borderColor,
                 child: Text(
                   'Choose Files',
@@ -40,11 +53,17 @@ class UploadFlotingOrders extends StatelessWidget {
               SizedBox(
                 width: 16.sp,
               ),
-              Text(
-                "No File Choosen",
-                style: context.headlineSmall
-                    ?.copyWith(color: context.colorScheme.secondary),
-              ),
+              ValueListenableBuilder(
+                  valueListenable: selectedFile,
+                  builder: (_, value, __) {
+                    return Text(
+                      value == null
+                          ? "No File Choosen"
+                          : value.files.first.name,
+                      style: context.headlineSmall
+                          ?.copyWith(color: context.colorScheme.secondary),
+                    );
+                  }),
             ],
           ),
         ),
