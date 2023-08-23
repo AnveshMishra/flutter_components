@@ -67,6 +67,8 @@ class _Page1State extends State<Page1> {
                   RecentOrderTableElements(
                     onTap: () {
                       showDraggableBottomSheet(
+                        initialChildSize: 0.75,
+                        minChildSize: 0.75,
                         title: 'Add Secondary Sales',
                         context: context,
                         builder: (_, con) => SecondarySaleSheet(

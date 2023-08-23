@@ -45,8 +45,7 @@ Future<void> showDraggableBottomSheet({
                       ),
                     ),
                     padding: EdgeInsets.only(
-                        bottom:
-                            MediaQuery.of(context).viewInsets.bottom + 20.sp),
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -80,6 +79,9 @@ Future<void> showDraggableBottomSheet({
                             title,
                             style: context.headlineMedium,
                           ).paddingSymmetric(horizontal: 16.sp),
+                          SizedBox(
+                            height: 8.sp,
+                          ),
                         ],
                         Flexible(
                           flex: 1,

@@ -14,19 +14,23 @@ class SecondarySaleSheet extends StatefulWidget {
 }
 
 class _SecondarySaleSheetState extends State<SecondarySaleSheet> {
-  int formLength = 1;
-  List<GlobalKey> dataKey = [
-    GlobalKey(),
-  ];
+  late List<SecondarySaleFieldsModel> fields;
+
+  @override
+  void initState() {
+    super.initState();
+    fields = [
+      SecondarySaleFieldsModel(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       controller: widget.controller,
-      itemCount: formLength,
+      itemCount: fields.length,
       itemBuilder: (BuildContext context, int index) {
         return Column(
-          key: dataKey[index],
           children: [
             Row(
               children: [
@@ -35,9 +39,12 @@ class _SecondarySaleSheetState extends State<SecondarySaleSheet> {
                   style: context.headlineSmall,
                 ),
                 const Spacer(),
-                if (index != 0) ...[
+                if (fields.length > 1) ...[
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        fields.removeAt(index);
+                        setState(() {});
+                      },
                       icon: Icon(
                         Icons.remove_circle,
                         color: context.colorScheme.error,
@@ -46,7 +53,7 @@ class _SecondarySaleSheetState extends State<SecondarySaleSheet> {
               ],
             ).paddingOnOnlySides(left: 16.sp, right: 16.sp, top: 16.sp),
             AppDropDown(
-              controller: TextEditingController(),
+              controller: fields[index].shipToPartyController,
               onPressed: () {},
               label: 'Ship to Party',
               initValue: 'Enter ship to party no. or name or city',
@@ -54,28 +61,26 @@ class _SecondarySaleSheetState extends State<SecondarySaleSheet> {
               16.sp,
             ),
             AppTextField(
-              controller: TextEditingController(),
-              label: 'Assing City',
+              controller: fields[index].assignCityController,
+              label: 'Assign City',
               hint: 'Assign city',
             ).paddingOnOnlySides(
               left: 16.sp,
               right: 16.sp,
               bottom: 16.sp,
             ),
-            if (index == formLength - 1) ...[
+            if (index == fields.length - 1) ...[
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: context.colorScheme.onBackground,
                 ),
                 onPressed: () {
-                  formLength += 1;
-                  dataKey.add(
-                    GlobalKey(),
-                  );
+                  fields.add(SecondarySaleFieldsModel());
                   setState(() {});
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                     widget.controller?.animateTo(
-                        widget.controller?.position.maxScrollExtent ?? 0,
+                        (widget.controller?.position.maxScrollExtent ??
+                            0 + 100),
                         duration: const Duration(milliseconds: 400),
                         curve: Curves.easeInOut);
                   });
@@ -100,8 +105,9 @@ class _SecondarySaleSheetState extends State<SecondarySaleSheet> {
                     ),
                     Text(
                       'Add More',
-                      style:
-                          context.headlineMedium?.copyWith(color: Colors.white),
+                      style: context.headlineMedium?.copyWith(
+                        color: context.colorScheme.background,
+                      ),
                     ),
                   ],
                 ),
@@ -112,4 +118,9 @@ class _SecondarySaleSheetState extends State<SecondarySaleSheet> {
       },
     );
   }
+}
+
+class SecondarySaleFieldsModel {
+  final TextEditingController shipToPartyController = TextEditingController();
+  final TextEditingController assignCityController = TextEditingController();
 }
