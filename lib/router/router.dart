@@ -1,6 +1,8 @@
 import 'package:api_client/orders/my_orders.dart';
+import 'package:api_client/orders/provider/floating_order_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../charts/charts_demo.dart';
 import '../charts/new_chart.dart';
@@ -37,11 +39,16 @@ class AppRoute {
           name: '/page1',
           path: '/page1',
           pageBuilder: (context, state) {
-            return const MaterialPage(
-              child: Page1(),
+            return MaterialPage(
+              child: MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(create: (_) => FloatingOrderProvider())
+                ],
+                child: const Page1(),
+              ),
             );
           },
-          builder: (context, GoRouterState state) => const Page1(),
+          // builder: (context, GoRouterState state) => const Page1(),
         ),
         GoRoute(
           name: '/chart',

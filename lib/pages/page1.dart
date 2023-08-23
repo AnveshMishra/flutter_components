@@ -1,8 +1,11 @@
 import 'package:api_client/app_text_field.dart';
+import 'package:api_client/base_bottom_sheer.dart';
 import 'package:api_client/date_picker/date_picker.dart';
 import 'package:api_client/draggable_bottom_sheet.dart';
 import 'package:api_client/hexcolor/hexcolor.dart';
+import 'package:api_client/orders/provider/floating_order_provider.dart';
 import 'package:api_client/orders/widgets/secondry_sale_form.dart';
+import 'package:api_client/orders/widgets/upload_floating_order.dart';
 import 'package:api_client/padding_ext.dart';
 import 'package:api_client/sizer/sizer/size_config.dart';
 import 'package:api_client/table/table_widgets.dart';
@@ -87,7 +90,13 @@ class _Page1State extends State<Page1> {
                     productName: 'PPC Yellow...+3 More',
                   ),
                   RecentOrderTableElements(
-                    onTap: () {},
+                    onTap: () {
+                      showAppBottomSheet(
+                        context: context,
+                        child: const UploadFlotingOrders(),
+                        text: 'Upload Floating Orders',
+                      );
+                    },
                     poNo: 'SP3587N',
                     productName: 'PPC Yellow...+3 More',
                   ),
